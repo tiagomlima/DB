@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 29-Maio-2017 às 12:59
+-- Generation Time: 01-Jun-2017 às 17:39
 -- Versão do servidor: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -37,18 +37,30 @@ CREATE TABLE `acervos` (
   `tipoItem_id` int(11) NOT NULL,
   `secao_id` int(11) NOT NULL,
   `colecao_id` int(11) NOT NULL,
+  `categoria_id` int(2) NOT NULL,
   `img_acervo` varchar(255) DEFAULT NULL,
   `descricao` text,
-  `status` varchar(20) DEFAULT NULL
+  `status` varchar(20) DEFAULT NULL,
+  `palavra_chave` varchar(120) DEFAULT NULL,
+  `dataAquisicao` date NOT NULL,
+  `origemAquisicao` varchar(100) NOT NULL,
+  `observacaoAquisicao` varchar(200) NOT NULL,
+  `preco` double NOT NULL,
+  `tabelaCutter` varchar(100) NOT NULL,
+  `isbn` varchar(100) NOT NULL,
+  `anoEdicao` date NOT NULL,
+  `artigo` varchar(50) NOT NULL,
+  `notas` varchar(100) DEFAULT NULL,
+  `numero_paginas` int(6) NOT NULL,
+  `formato` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `acervos`
 --
 
-INSERT INTO `acervos` (`idAcervos`, `titulo`, `tombo`, `estoque`, `idioma`, `autor_id`, `editora_id`, `tipoItem_id`, `secao_id`, `colecao_id`, `img_acervo`, `descricao`, `status`) VALUES
-(8, 'Star Wars', '1455987', 3, 'Português', 12, 3, 1, 4, 3, 'http://localhost/librecon/assets/uploads/cb8e4cc2dfd65100980372643f05d5aa.jpeg', NULL, NULL),
-(9, 'Alibaba e os 40 ladroes', '234561', 1, 'Português', 12, 3, 1, 4, 3, 'http://localhost/librecon/assets/uploads/95c013f124ab04a64aa140695e503949.jpg', 'Alibaba é uma personagem fictícia baseada na Arábia pré-islâmica. O conto está descrito nas aventuras de Ali Babá e os Quarenta Ladrões, que faz parte do Livro das Mil e Uma Noites ou Noites na Arábia. Alguns críticos acreditam que esta história tenha sido adicionada ao Livro das Mil e Uma Noites por um dos seus transcritores europeus, Antoine Galland, que foi um orientalista francês do século XVIII que talvez a tenha ouvido, de um contador de histórias árabe de Alepo. No entanto, Richard F. Burton garantiu que o conto faz parte do original Livro das Mil e Uma Noites. Esta história também tem sido utilizada como popular pantomima no famoso pantomima/musical Chu Chin Chow (1916).', NULL);
+INSERT INTO `acervos` (`idAcervos`, `titulo`, `tombo`, `estoque`, `idioma`, `autor_id`, `editora_id`, `tipoItem_id`, `secao_id`, `colecao_id`, `categoria_id`, `img_acervo`, `descricao`, `status`, `palavra_chave`, `dataAquisicao`, `origemAquisicao`, `observacaoAquisicao`, `preco`, `tabelaCutter`, `isbn`, `anoEdicao`, `artigo`, `notas`, `numero_paginas`, `formato`) VALUES
+(11, 'Alibaba e os 40 ladrões', '69875', 3, 'Português', 12, 3, 1, 4, 3, 1, 'http://localhost/Librecon/assets/uploads/a57ab86776df5e88ea37cdc7ca3dddd1.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pretium lectus vitae sapien feugiat ultricies. Cras volutpat vitae lorem a accumsan. Aliquam ullamcorper ornare ex. Quisque luctus nunc dui, ut mollis augue volutpat eu. Suspendisse potenti. Mauris gravida varius lacinia. Aliquam tempor mauris felis, id viverra nisl condimentum quis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur venenatis lorem magna, at sodales quam laoreet eget.								\r\n							', NULL, 'alibaba, ficção, 40, ladrão', '2016-02-05', 'Saraiva', 'teste', 55, '111', '9782123456803', '2015-10-10', 'Teste', 'teste', 250, 'Teste');
 
 -- --------------------------------------------------------
 
@@ -73,6 +85,24 @@ INSERT INTO `autor` (`idAutor`, `autor`, `descricao`, `dataCadastro`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `categoria`
+--
+
+CREATE TABLE `categoria` (
+  `idCategoria` int(2) NOT NULL,
+  `nomeCategoria` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `categoria`
+--
+
+INSERT INTO `categoria` (`idCategoria`, `nomeCategoria`) VALUES
+(1, 'Tecnologia da Informação');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `ci_sessions`
 --
 
@@ -89,7 +119,7 @@ CREATE TABLE `ci_sessions` (
 --
 
 INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('d10e75504ed69670038fb0b21a1a7627', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', 1496021568, 'a:7:{s:9:"user_data";s:0:"";s:4:"nome";s:5:"admin";s:2:"id";s:1:"9";s:9:"permissao";s:1:"1";s:6:"logado";b:1;s:12:"tipo_usuario";s:1:"0";s:5:"grupo";N;}');
+('c55993ae299e1f56cb88011c3575e982', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', 1496338149, 'a:7:{s:9:"user_data";s:0:"";s:4:"nome";s:5:"admin";s:2:"id";s:1:"9";s:9:"permissao";s:1:"1";s:6:"logado";b:1;s:12:"tipo_usuario";s:1:"0";s:5:"grupo";N;}');
 
 -- --------------------------------------------------------
 
@@ -287,6 +317,18 @@ CREATE TABLE `itens_de_emprestimos` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `itens_de_reserva`
+--
+
+CREATE TABLE `itens_de_reserva` (
+  `idItem` int(11) NOT NULL,
+  `reserva_id` int(11) NOT NULL,
+  `acervos_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `permissoes`
 --
 
@@ -303,8 +345,8 @@ CREATE TABLE `permissoes` (
 --
 
 INSERT INTO `permissoes` (`idPermissao`, `nome`, `permissoes`, `situacao`, `data`) VALUES
-(1, 'Administrador', 'a:74:{s:6:"aCurso";s:1:"1";s:6:"eCurso";s:1:"1";s:6:"dCurso";s:1:"1";s:6:"vCurso";s:1:"1";s:11:"aDisciplina";s:1:"1";s:11:"eDisciplina";s:1:"1";s:11:"dDisciplina";s:1:"1";s:11:"vDisciplina";s:1:"1";s:6:"aGrupo";s:1:"1";s:6:"eGrupo";s:1:"1";s:6:"dGrupo";s:1:"1";s:6:"vGrupo";s:1:"1";s:7:"aLeitor";s:1:"1";s:7:"eLeitor";s:1:"1";s:7:"dLeitor";s:1:"1";s:7:"vLeitor";s:1:"1";s:7:"aAcervo";s:1:"1";s:7:"eAcervo";s:1:"1";s:7:"dAcervo";s:1:"1";s:7:"vAcervo";s:1:"1";s:6:"aAutor";s:1:"1";s:6:"eAutor";s:1:"1";s:6:"dAutor";s:1:"1";s:6:"vAutor";s:1:"1";s:8:"aEditora";s:1:"1";s:8:"eEditora";s:1:"1";s:8:"dEditora";s:1:"1";s:8:"vEditora";s:1:"1";s:9:"aTipoItem";s:1:"1";s:9:"eTipoItem";s:1:"1";s:9:"dTipoItem";s:1:"1";s:9:"vTipoItem";s:1:"1";s:6:"aSecao";s:1:"1";s:6:"eSecao";s:1:"1";s:6:"dSecao";s:1:"1";s:6:"vSecao";s:1:"1";s:8:"aColecao";s:1:"1";s:8:"eColecao";s:1:"1";s:8:"dColecao";s:1:"1";s:8:"vColecao";s:1:"1";s:8:"aReserva";s:1:"1";s:8:"eReserva";s:1:"1";s:8:"dReserva";s:1:"1";s:8:"vReserva";s:1:"1";s:3:"aOs";s:1:"1";s:3:"eOs";s:1:"1";s:3:"dOs";s:1:"1";s:3:"vOs";s:1:"1";s:6:"aTeste";b:0;s:6:"eTeste";b:0;s:6:"dTeste";b:0;s:6:"vTeste";b:0;s:11:"aEmprestimo";s:1:"1";s:11:"eEmprestimo";s:1:"1";s:11:"dEmprestimo";s:1:"1";s:11:"vEmprestimo";s:1:"1";s:8:"aArquivo";s:1:"1";s:8:"eArquivo";s:1:"1";s:8:"dArquivo";s:1:"1";s:8:"vArquivo";s:1:"1";s:11:"aLancamento";s:1:"1";s:11:"eLancamento";s:1:"1";s:11:"dLancamento";s:1:"1";s:11:"vLancamento";s:1:"1";s:8:"cUsuario";s:1:"1";s:9:"cEmitente";s:1:"1";s:10:"cPermissao";s:1:"1";s:7:"cBackup";s:1:"1";s:7:"rLeitor";s:1:"1";s:7:"rAcervo";s:1:"1";s:8:"rReserva";s:1:"1";s:3:"rOs";b:0;s:11:"rEmprestimo";s:1:"1";s:11:"rFinanceiro";s:1:"1";}', 1, '2014-09-03'),
-(2, 'Leitor', 'a:74:{s:6:"aCurso";b:0;s:6:"eCurso";b:0;s:6:"dCurso";b:0;s:6:"vCurso";b:0;s:11:"aDisciplina";b:0;s:11:"eDisciplina";b:0;s:11:"dDisciplina";b:0;s:11:"vDisciplina";b:0;s:6:"aGrupo";b:0;s:6:"eGrupo";b:0;s:6:"dGrupo";b:0;s:6:"vGrupo";b:0;s:7:"aLeitor";b:0;s:7:"eLeitor";b:0;s:7:"dLeitor";b:0;s:7:"vLeitor";b:0;s:7:"aAcervo";b:0;s:7:"eAcervo";b:0;s:7:"dAcervo";b:0;s:7:"vAcervo";s:1:"1";s:6:"aAutor";b:0;s:6:"eAutor";b:0;s:6:"dAutor";b:0;s:6:"vAutor";b:0;s:8:"aEditora";b:0;s:8:"eEditora";b:0;s:8:"dEditora";b:0;s:8:"vEditora";b:0;s:9:"aTipoItem";b:0;s:9:"eTipoItem";b:0;s:9:"dTipoItem";b:0;s:9:"vTipoItem";b:0;s:6:"aSecao";b:0;s:6:"eSecao";b:0;s:6:"dSecao";b:0;s:6:"vSecao";b:0;s:8:"aColecao";b:0;s:8:"eColecao";b:0;s:8:"dColecao";b:0;s:8:"vColecao";b:0;s:8:"aReserva";b:0;s:8:"eReserva";b:0;s:8:"dReserva";b:0;s:8:"vReserva";s:1:"1";s:3:"aOs";b:0;s:3:"eOs";b:0;s:3:"dOs";b:0;s:3:"vOs";b:0;s:6:"aTeste";b:0;s:6:"eTeste";b:0;s:6:"dTeste";b:0;s:6:"vTeste";b:0;s:11:"aEmprestimo";b:0;s:11:"eEmprestimo";b:0;s:11:"dEmprestimo";b:0;s:11:"vEmprestimo";b:0;s:8:"aArquivo";b:0;s:8:"eArquivo";b:0;s:8:"dArquivo";b:0;s:8:"vArquivo";b:0;s:11:"aLancamento";b:0;s:11:"eLancamento";b:0;s:11:"dLancamento";b:0;s:11:"vLancamento";b:0;s:8:"cUsuario";b:0;s:9:"cEmitente";b:0;s:10:"cPermissao";b:0;s:7:"cBackup";b:0;s:7:"rLeitor";b:0;s:7:"rAcervo";b:0;s:8:"rReserva";b:0;s:3:"rOs";b:0;s:11:"rEmprestimo";b:0;s:11:"rFinanceiro";b:0;}', 1, '2017-04-10');
+(1, 'Administrador', 'a:78:{s:6:"aCurso";s:1:"1";s:6:"eCurso";s:1:"1";s:6:"dCurso";s:1:"1";s:6:"vCurso";s:1:"1";s:11:"aDisciplina";s:1:"1";s:11:"eDisciplina";s:1:"1";s:11:"dDisciplina";s:1:"1";s:11:"vDisciplina";s:1:"1";s:6:"aGrupo";s:1:"1";s:6:"eGrupo";s:1:"1";s:6:"dGrupo";s:1:"1";s:6:"vGrupo";s:1:"1";s:7:"aLeitor";s:1:"1";s:7:"eLeitor";s:1:"1";s:7:"dLeitor";s:1:"1";s:7:"vLeitor";s:1:"1";s:7:"aAcervo";s:1:"1";s:7:"eAcervo";s:1:"1";s:7:"dAcervo";s:1:"1";s:7:"vAcervo";s:1:"1";s:6:"aAutor";s:1:"1";s:6:"eAutor";s:1:"1";s:6:"dAutor";s:1:"1";s:6:"vAutor";s:1:"1";s:8:"aEditora";s:1:"1";s:8:"eEditora";s:1:"1";s:8:"dEditora";s:1:"1";s:8:"vEditora";s:1:"1";s:9:"aTipoItem";s:1:"1";s:9:"eTipoItem";s:1:"1";s:9:"dTipoItem";s:1:"1";s:9:"vTipoItem";s:1:"1";s:10:"aCategoria";s:1:"1";s:10:"eCategoria";s:1:"1";s:10:"dCategoria";s:1:"1";s:10:"vCategoria";s:1:"1";s:6:"aSecao";s:1:"1";s:6:"eSecao";s:1:"1";s:6:"dSecao";s:1:"1";s:6:"vSecao";s:1:"1";s:8:"aColecao";s:1:"1";s:8:"eColecao";s:1:"1";s:8:"dColecao";s:1:"1";s:8:"vColecao";s:1:"1";s:8:"aReserva";s:1:"1";s:8:"eReserva";s:1:"1";s:8:"dReserva";s:1:"1";s:8:"vReserva";s:1:"1";s:3:"aOs";s:1:"1";s:3:"eOs";s:1:"1";s:3:"dOs";s:1:"1";s:3:"vOs";s:1:"1";s:6:"aTeste";b:0;s:6:"eTeste";b:0;s:6:"dTeste";b:0;s:6:"vTeste";b:0;s:11:"aEmprestimo";s:1:"1";s:11:"eEmprestimo";s:1:"1";s:11:"dEmprestimo";s:1:"1";s:11:"vEmprestimo";s:1:"1";s:8:"aArquivo";s:1:"1";s:8:"eArquivo";s:1:"1";s:8:"dArquivo";s:1:"1";s:8:"vArquivo";s:1:"1";s:11:"aLancamento";s:1:"1";s:11:"eLancamento";s:1:"1";s:11:"dLancamento";s:1:"1";s:11:"vLancamento";s:1:"1";s:8:"cUsuario";s:1:"1";s:9:"cEmitente";s:1:"1";s:10:"cPermissao";s:1:"1";s:7:"cBackup";s:1:"1";s:7:"rLeitor";s:1:"1";s:7:"rAcervo";s:1:"1";s:8:"rReserva";s:1:"1";s:3:"rOs";b:0;s:11:"rEmprestimo";s:1:"1";s:11:"rFinanceiro";s:1:"1";}', 1, '2014-09-03'),
+(2, 'Leitor', 'a:74:{s:6:"aCurso";b:0;s:6:"eCurso";b:0;s:6:"dCurso";b:0;s:6:"vCurso";b:0;s:11:"aDisciplina";b:0;s:11:"eDisciplina";b:0;s:11:"dDisciplina";b:0;s:11:"vDisciplina";b:0;s:6:"aGrupo";b:0;s:6:"eGrupo";b:0;s:6:"dGrupo";b:0;s:6:"vGrupo";b:0;s:7:"aLeitor";b:0;s:7:"eLeitor";b:0;s:7:"dLeitor";b:0;s:7:"vLeitor";b:0;s:7:"aAcervo";b:0;s:7:"eAcervo";b:0;s:7:"dAcervo";b:0;s:7:"vAcervo";s:1:"1";s:6:"aAutor";b:0;s:6:"eAutor";b:0;s:6:"dAutor";b:0;s:6:"vAutor";b:0;s:8:"aEditora";b:0;s:8:"eEditora";b:0;s:8:"dEditora";b:0;s:8:"vEditora";b:0;s:9:"aTipoItem";b:0;s:9:"eTipoItem";b:0;s:9:"dTipoItem";b:0;s:9:"vTipoItem";b:0;s:6:"aSecao";b:0;s:6:"eSecao";b:0;s:6:"dSecao";b:0;s:6:"vSecao";b:0;s:8:"aColecao";b:0;s:8:"eColecao";b:0;s:8:"dColecao";b:0;s:8:"vColecao";b:0;s:8:"aReserva";b:0;s:8:"eReserva";s:1:"1";s:8:"dReserva";b:0;s:8:"vReserva";s:1:"1";s:3:"aOs";b:0;s:3:"eOs";b:0;s:3:"dOs";b:0;s:3:"vOs";b:0;s:6:"aTeste";b:0;s:6:"eTeste";b:0;s:6:"dTeste";b:0;s:6:"vTeste";b:0;s:11:"aEmprestimo";b:0;s:11:"eEmprestimo";b:0;s:11:"dEmprestimo";b:0;s:11:"vEmprestimo";b:0;s:8:"aArquivo";b:0;s:8:"eArquivo";b:0;s:8:"dArquivo";b:0;s:8:"vArquivo";b:0;s:11:"aLancamento";b:0;s:11:"eLancamento";b:0;s:11:"dLancamento";b:0;s:11:"vLancamento";b:0;s:8:"cUsuario";b:0;s:9:"cEmitente";b:0;s:10:"cPermissao";b:0;s:7:"cBackup";b:0;s:7:"rLeitor";b:0;s:7:"rAcervo";b:0;s:8:"rReserva";b:0;s:3:"rOs";b:0;s:11:"rEmprestimo";b:0;s:11:"rFinanceiro";b:0;}', 1, '2017-04-10');
 
 -- --------------------------------------------------------
 
@@ -315,20 +357,12 @@ INSERT INTO `permissoes` (`idPermissao`, `nome`, `permissoes`, `situacao`, `data
 CREATE TABLE `reserva` (
   `idReserva` int(11) NOT NULL,
   `usuario_id` int(11) NOT NULL,
-  `acervos_id` int(11) NOT NULL,
   `dataReserva` date NOT NULL,
   `dataPrazo` date DEFAULT NULL,
   `dataRetirada` date DEFAULT NULL,
-  `status` varchar(20) NOT NULL
+  `status` varchar(20) DEFAULT NULL,
+  `qtde_item` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `reserva`
---
-
-INSERT INTO `reserva` (`idReserva`, `usuario_id`, `acervos_id`, `dataReserva`, `dataPrazo`, `dataRetirada`, `status`) VALUES
-(2, 7, 8, '2017-05-29', '2017-06-05', NULL, ''),
-(3, 7, 9, '2017-05-29', '2017-06-05', NULL, '');
 
 -- --------------------------------------------------------
 
@@ -423,13 +457,20 @@ ALTER TABLE `acervos`
   ADD KEY `fk_acervos_editora1` (`editora_id`),
   ADD KEY `fk_acervos_tipoItem1` (`tipoItem_id`),
   ADD KEY `fk_acervos_secao1` (`secao_id`),
-  ADD KEY `fk_acervos_colecao1` (`colecao_id`);
+  ADD KEY `fk_acervos_colecao1` (`colecao_id`),
+  ADD KEY `fk_acervos_categoria` (`categoria_id`);
 
 --
 -- Indexes for table `autor`
 --
 ALTER TABLE `autor`
   ADD PRIMARY KEY (`idAutor`);
+
+--
+-- Indexes for table `categoria`
+--
+ALTER TABLE `categoria`
+  ADD PRIMARY KEY (`idCategoria`);
 
 --
 -- Indexes for table `ci_sessions`
@@ -498,6 +539,14 @@ ALTER TABLE `itens_de_emprestimos`
   ADD KEY `fk_itens_de_emprestimos1` (`emprestimos_id`);
 
 --
+-- Indexes for table `itens_de_reserva`
+--
+ALTER TABLE `itens_de_reserva`
+  ADD PRIMARY KEY (`idItem`),
+  ADD KEY `fk_itens_de_reserva_reserva` (`reserva_id`),
+  ADD KEY `fk_itens_de_reserva_acervos` (`acervos_id`);
+
+--
 -- Indexes for table `permissoes`
 --
 ALTER TABLE `permissoes`
@@ -508,8 +557,7 @@ ALTER TABLE `permissoes`
 --
 ALTER TABLE `reserva`
   ADD PRIMARY KEY (`idReserva`),
-  ADD KEY `fk_reserva_usuario_idx` (`usuario_id`),
-  ADD KEY `fk_reserva_acervo_idx` (`acervos_id`);
+  ADD KEY `fk_reserva_usuario_idx` (`usuario_id`);
 
 --
 -- Indexes for table `secao`
@@ -540,12 +588,17 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `acervos`
 --
 ALTER TABLE `acervos`
-  MODIFY `idAcervos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idAcervos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `autor`
 --
 ALTER TABLE `autor`
   MODIFY `idAutor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `categoria`
+--
+ALTER TABLE `categoria`
+  MODIFY `idCategoria` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `colecao`
 --
@@ -580,7 +633,7 @@ ALTER TABLE `emitente`
 -- AUTO_INCREMENT for table `emprestimos`
 --
 ALTER TABLE `emprestimos`
-  MODIFY `idEmprestimos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idEmprestimos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `grupos`
 --
@@ -592,6 +645,11 @@ ALTER TABLE `grupos`
 ALTER TABLE `itens_de_emprestimos`
   MODIFY `idItens` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
+-- AUTO_INCREMENT for table `itens_de_reserva`
+--
+ALTER TABLE `itens_de_reserva`
+  MODIFY `idItem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
 -- AUTO_INCREMENT for table `permissoes`
 --
 ALTER TABLE `permissoes`
@@ -600,7 +658,7 @@ ALTER TABLE `permissoes`
 -- AUTO_INCREMENT for table `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `idReserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idReserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `secao`
 --
@@ -625,6 +683,7 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `acervos`
   ADD CONSTRAINT `fk_acervos_autor1` FOREIGN KEY (`autor_id`) REFERENCES `autor` (`idAutor`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_acervos_categoria` FOREIGN KEY (`categoria_id`) REFERENCES `categoria` (`idCategoria`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_acervos_colecao1` FOREIGN KEY (`colecao_id`) REFERENCES `colecao` (`idColecao`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_acervos_editora1` FOREIGN KEY (`editora_id`) REFERENCES `editora` (`idEditora`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_acervos_secao1` FOREIGN KEY (`secao_id`) REFERENCES `secao` (`idSecao`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -653,7 +712,6 @@ ALTER TABLE `itens_de_emprestimos`
 -- Limitadores para a tabela `reserva`
 --
 ALTER TABLE `reserva`
-  ADD CONSTRAINT `fk_reserva_acervo` FOREIGN KEY (`acervos_id`) REFERENCES `acervos` (`idAcervos`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_reserva_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`idUsuarios`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
