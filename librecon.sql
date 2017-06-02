@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 01-Jun-2017 às 17:39
+-- Generation Time: 02-Jun-2017 às 17:53
 -- Versão do servidor: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -60,7 +60,8 @@ CREATE TABLE `acervos` (
 --
 
 INSERT INTO `acervos` (`idAcervos`, `titulo`, `tombo`, `estoque`, `idioma`, `autor_id`, `editora_id`, `tipoItem_id`, `secao_id`, `colecao_id`, `categoria_id`, `img_acervo`, `descricao`, `status`, `palavra_chave`, `dataAquisicao`, `origemAquisicao`, `observacaoAquisicao`, `preco`, `tabelaCutter`, `isbn`, `anoEdicao`, `artigo`, `notas`, `numero_paginas`, `formato`) VALUES
-(11, 'Alibaba e os 40 ladrões', '69875', 3, 'Português', 12, 3, 1, 4, 3, 1, 'http://localhost/Librecon/assets/uploads/a57ab86776df5e88ea37cdc7ca3dddd1.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pretium lectus vitae sapien feugiat ultricies. Cras volutpat vitae lorem a accumsan. Aliquam ullamcorper ornare ex. Quisque luctus nunc dui, ut mollis augue volutpat eu. Suspendisse potenti. Mauris gravida varius lacinia. Aliquam tempor mauris felis, id viverra nisl condimentum quis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur venenatis lorem magna, at sodales quam laoreet eget.								\r\n							', NULL, 'alibaba, ficção, 40, ladrão', '2016-02-05', 'Saraiva', 'teste', 55, '111', '9782123456803', '2015-10-10', 'Teste', 'teste', 250, 'Teste');
+(11, 'Alibaba e os 40 ladrões', '69875', 5, 'Português', 12, 3, 1, 4, 3, 1, 'http://localhost/Librecon/assets/uploads/a57ab86776df5e88ea37cdc7ca3dddd1.jpg', '							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pretium lectus vitae sapien feugiat ultricies. Cras volutpat vitae lorem a accumsan. Aliquam ullamcorper ornare ex. Quisque luctus nunc dui, ut mollis augue volutpat eu. Suspendisse potenti. Mauris gravida varius lacinia. Aliquam tempor mauris felis, id viverra nisl condimentum quis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur venenatis lorem magna, at sodales quam laoreet eget.								\r\n								\r\n							', NULL, 'alibaba, ficção, 40, ladrão', '2016-02-05', 'Saraiva', 'teste', 55, '111', '9782123456803', '2015-10-10', 'Teste', 'teste', 250, 'Teste'),
+(12, 'Harry Potter', '789', 4, 'Ingles', 13, 4, 1, 5, 4, 2, 'http://localhost/Librecon/assets/uploads/d9188aa96a89a99e7839ab30e0c613d8.jpg', '																																																																																					\r\n								\r\n								\r\n								\r\n								\r\n								\r\n								\r\n								\r\n								\r\n								\r\n								\r\n								\r\n							', NULL, 'harry,magico, potter, magia', '2014-03-22', 'Saraiva', '', 88, '111aaa', '1459874', '2000-02-10', 'seila', '', 680, 'sei la');
 
 -- --------------------------------------------------------
 
@@ -80,7 +81,8 @@ CREATE TABLE `autor` (
 --
 
 INSERT INTO `autor` (`idAutor`, `autor`, `descricao`, `dataCadastro`) VALUES
-(12, 'Ze Celso', '', '2017-04-29');
+(12, 'Ze Celso', '', '2017-04-29'),
+(13, 'J.K', '', '2017-06-02');
 
 -- --------------------------------------------------------
 
@@ -98,7 +100,8 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`idCategoria`, `nomeCategoria`) VALUES
-(1, 'Tecnologia da Informação');
+(1, 'Tecnologia da Informação'),
+(2, 'Outros');
 
 -- --------------------------------------------------------
 
@@ -119,7 +122,7 @@ CREATE TABLE `ci_sessions` (
 --
 
 INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('c55993ae299e1f56cb88011c3575e982', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', 1496338149, 'a:7:{s:9:"user_data";s:0:"";s:4:"nome";s:5:"admin";s:2:"id";s:1:"9";s:9:"permissao";s:1:"1";s:6:"logado";b:1;s:12:"tipo_usuario";s:1:"0";s:5:"grupo";N;}');
+('3904f76cd25b2ce288e245ee2d49c56e', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', 1496425638, 'a:7:{s:9:"user_data";s:0:"";s:4:"nome";s:5:"admin";s:2:"id";s:1:"9";s:9:"permissao";s:1:"1";s:6:"logado";b:1;s:12:"tipo_usuario";s:1:"0";s:5:"grupo";N;}');
 
 -- --------------------------------------------------------
 
@@ -138,7 +141,8 @@ CREATE TABLE `colecao` (
 --
 
 INSERT INTO `colecao` (`idColecao`, `colecao`, `dataCadastro`) VALUES
-(3, 'Vol.1', '2017-05-28');
+(3, 'Vol.1', '2017-05-28'),
+(4, 'Classicos', '2017-06-02');
 
 -- --------------------------------------------------------
 
@@ -226,7 +230,8 @@ CREATE TABLE `editora` (
 --
 
 INSERT INTO `editora` (`idEditora`, `editora`, `email_editora`, `site`, `dataCadastro`) VALUES
-(3, 'Galo de Kalsa', '', '', '2017-05-28');
+(3, 'Galo de Kalsa', '', '', '2017-05-28'),
+(4, 'Nova', '', '', '2017-06-02');
 
 -- --------------------------------------------------------
 
@@ -265,14 +270,14 @@ INSERT INTO `emitente` (`id`, `nome`, `cnpj`, `ie`, `rua`, `numero`, `bairro`, `
 CREATE TABLE `emprestimos` (
   `idEmprestimos` int(11) NOT NULL,
   `dataEmprestimo` date NOT NULL,
-  `dataDevolucao` date NOT NULL,
+  `dataDevolucao` date DEFAULT NULL,
   `dataVencimento` date NOT NULL,
   `leitor_id` int(11) NOT NULL,
   `usuarios_id` int(11) NOT NULL,
   `status` varchar(20) NOT NULL,
   `grupo_id` int(11) NOT NULL,
-  `qtde_item` int(2) NOT NULL,
-  `qtde_renovacao` int(2) NOT NULL
+  `qtde_item` int(2) DEFAULT NULL,
+  `qtde_renovacao` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -310,8 +315,7 @@ INSERT INTO `grupos` (`idGrupo`, `nomeGrupo`, `duracao_dias`, `qtde_max_item`, `
 CREATE TABLE `itens_de_emprestimos` (
   `idItens` int(11) NOT NULL,
   `emprestimos_id` int(11) NOT NULL,
-  `acervos_id` int(11) NOT NULL,
-  `quantidade` int(2) NOT NULL
+  `acervos_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -325,6 +329,19 @@ CREATE TABLE `itens_de_reserva` (
   `reserva_id` int(11) NOT NULL,
   `acervos_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `itens_de_reserva`
+--
+
+INSERT INTO `itens_de_reserva` (`idItem`, `reserva_id`, `acervos_id`) VALUES
+(40, 40, 12),
+(41, 40, 11),
+(45, 43, 12),
+(46, 44, 12),
+(47, 45, 12),
+(48, 46, 11),
+(49, 47, 12);
 
 -- --------------------------------------------------------
 
@@ -359,10 +376,16 @@ CREATE TABLE `reserva` (
   `usuario_id` int(11) NOT NULL,
   `dataReserva` date NOT NULL,
   `dataPrazo` date DEFAULT NULL,
-  `dataRetirada` date DEFAULT NULL,
   `status` varchar(20) DEFAULT NULL,
   `qtde_item` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `reserva`
+--
+
+INSERT INTO `reserva` (`idReserva`, `usuario_id`, `dataReserva`, `dataPrazo`, `status`, `qtde_item`) VALUES
+(47, 11, '2017-06-02', '2017-06-09', 'Reservado', 1);
 
 -- --------------------------------------------------------
 
@@ -381,7 +404,8 @@ CREATE TABLE `secao` (
 --
 
 INSERT INTO `secao` (`idSecao`, `secao`, `dataCadastro`) VALUES
-(4, 'UFO', '2017-05-28');
+(4, 'UFO', '2017-05-28'),
+(5, 'Ficção', '2017-06-02');
 
 -- --------------------------------------------------------
 
@@ -442,7 +466,8 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`idUsuarios`, `tipo_usuario`, `nome`, `datanasc`, `cpf`, `matricula`, `email`, `senha`, `telefone`, `celular`, `rua`, `numero`, `bairro`, `cidade`, `estado`, `cep`, `sexo`, `observacoes`, `situacao`, `dataCadastro`, `permissoes_id`, `grupo_id`, `curso_id`) VALUES
 (5, 0, 'André Pedroso', NULL, '436.581.558-09', NULL, 'andre@admin.com', 'f865b53623b121fd34ee5426c792e5c33af8c227', '(19)3863-4433', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2017-05-26', 1, NULL, NULL),
 (7, 1, 'Tiago Lima', '1990-10-31', '433.458.789-21', '1423030', 'tiago@leitor.com', '501f7eb5211df6b1b57c7c487265756f7ca40e70', '(19)3843-9689', '(19)98978-6989', 'Vera Macaco', '233', 'Della Rocha', 'Itapira', 'SP', '13976-400', 'Masculino', '0', '1', '2017-05-26', 2, 1, 2),
-(9, 0, 'admin', NULL, '000.000.00-00', NULL, 'admin@admin.com', 'd033e22ae348aeb5660fc2140aec35850c4da997', '(xx)0000-0000', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2017-05-28', 1, NULL, NULL);
+(9, 0, 'admin', NULL, '000.000.00-00', NULL, 'admin@admin.com', 'd033e22ae348aeb5660fc2140aec35850c4da997', '(xx)0000-0000', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2017-05-28', 1, NULL, NULL),
+(11, 1, 'André Pedroso', '1994-11-21', '436.581.558-10', '1423007', 'andre@leitor.com', 'bc9800b9d52a24cce72a73dd528afed53f10e5fc', '(19)3863-4433', '', 'Cherubim Graciatto', '22', 'Nosso Teto', 'Itapira', 'SP', '13976-233', 'Masculino', '', '1', '2017-06-02', 2, 1, 2);
 
 --
 -- Indexes for dumped tables
@@ -588,22 +613,22 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `acervos`
 --
 ALTER TABLE `acervos`
-  MODIFY `idAcervos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idAcervos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `autor`
 --
 ALTER TABLE `autor`
-  MODIFY `idAutor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idAutor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `idCategoria` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idCategoria` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `colecao`
 --
 ALTER TABLE `colecao`
-  MODIFY `idColecao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idColecao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `cursos`
 --
@@ -623,7 +648,7 @@ ALTER TABLE `documentos`
 -- AUTO_INCREMENT for table `editora`
 --
 ALTER TABLE `editora`
-  MODIFY `idEditora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idEditora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `emitente`
 --
@@ -633,7 +658,7 @@ ALTER TABLE `emitente`
 -- AUTO_INCREMENT for table `emprestimos`
 --
 ALTER TABLE `emprestimos`
-  MODIFY `idEmprestimos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idEmprestimos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `grupos`
 --
@@ -643,12 +668,12 @@ ALTER TABLE `grupos`
 -- AUTO_INCREMENT for table `itens_de_emprestimos`
 --
 ALTER TABLE `itens_de_emprestimos`
-  MODIFY `idItens` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idItens` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `itens_de_reserva`
 --
 ALTER TABLE `itens_de_reserva`
-  MODIFY `idItem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idItem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 --
 -- AUTO_INCREMENT for table `permissoes`
 --
@@ -658,12 +683,12 @@ ALTER TABLE `permissoes`
 -- AUTO_INCREMENT for table `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `idReserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idReserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 --
 -- AUTO_INCREMENT for table `secao`
 --
 ALTER TABLE `secao`
-  MODIFY `idSecao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idSecao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `tipo_de_item`
 --
@@ -673,7 +698,7 @@ ALTER TABLE `tipo_de_item`
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idUsuarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idUsuarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- Constraints for dumped tables
 --
