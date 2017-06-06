@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 02-Jun-2017 às 17:53
+-- Generation Time: 06-Jun-2017 às 18:00
 -- Versão do servidor: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -35,8 +35,8 @@ CREATE TABLE `acervos` (
   `autor_id` int(11) NOT NULL,
   `editora_id` int(11) NOT NULL,
   `tipoItem_id` int(11) NOT NULL,
-  `secao_id` int(11) NOT NULL,
-  `colecao_id` int(11) NOT NULL,
+  `colecao_id` int(11) DEFAULT NULL,
+  `secao_id` int(11) DEFAULT NULL,
   `categoria_id` int(2) NOT NULL,
   `img_acervo` varchar(255) DEFAULT NULL,
   `descricao` text,
@@ -45,23 +45,21 @@ CREATE TABLE `acervos` (
   `dataAquisicao` date NOT NULL,
   `origemAquisicao` varchar(100) NOT NULL,
   `observacaoAquisicao` varchar(200) NOT NULL,
-  `preco` double NOT NULL,
+  `preco` double DEFAULT NULL,
   `tabelaCutter` varchar(100) NOT NULL,
   `isbn` varchar(100) NOT NULL,
-  `anoEdicao` date NOT NULL,
-  `artigo` varchar(50) NOT NULL,
-  `notas` varchar(100) DEFAULT NULL,
+  `anoEdicao` varchar(5) NOT NULL,
   `numero_paginas` int(6) NOT NULL,
-  `formato` varchar(50) NOT NULL
+  `edicao` varchar(50) DEFAULT NULL,
+  `classificacao` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `acervos`
 --
 
-INSERT INTO `acervos` (`idAcervos`, `titulo`, `tombo`, `estoque`, `idioma`, `autor_id`, `editora_id`, `tipoItem_id`, `secao_id`, `colecao_id`, `categoria_id`, `img_acervo`, `descricao`, `status`, `palavra_chave`, `dataAquisicao`, `origemAquisicao`, `observacaoAquisicao`, `preco`, `tabelaCutter`, `isbn`, `anoEdicao`, `artigo`, `notas`, `numero_paginas`, `formato`) VALUES
-(11, 'Alibaba e os 40 ladrões', '69875', 5, 'Português', 12, 3, 1, 4, 3, 1, 'http://localhost/Librecon/assets/uploads/a57ab86776df5e88ea37cdc7ca3dddd1.jpg', '							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pretium lectus vitae sapien feugiat ultricies. Cras volutpat vitae lorem a accumsan. Aliquam ullamcorper ornare ex. Quisque luctus nunc dui, ut mollis augue volutpat eu. Suspendisse potenti. Mauris gravida varius lacinia. Aliquam tempor mauris felis, id viverra nisl condimentum quis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur venenatis lorem magna, at sodales quam laoreet eget.								\r\n								\r\n							', NULL, 'alibaba, ficção, 40, ladrão', '2016-02-05', 'Saraiva', 'teste', 55, '111', '9782123456803', '2015-10-10', 'Teste', 'teste', 250, 'Teste'),
-(12, 'Harry Potter', '789', 4, 'Ingles', 13, 4, 1, 5, 4, 2, 'http://localhost/Librecon/assets/uploads/d9188aa96a89a99e7839ab30e0c613d8.jpg', '																																																																																					\r\n								\r\n								\r\n								\r\n								\r\n								\r\n								\r\n								\r\n								\r\n								\r\n								\r\n								\r\n							', NULL, 'harry,magico, potter, magia', '2014-03-22', 'Saraiva', '', 88, '111aaa', '1459874', '2000-02-10', 'seila', '', 680, 'sei la');
+INSERT INTO `acervos` (`idAcervos`, `titulo`, `tombo`, `estoque`, `idioma`, `autor_id`, `editora_id`, `tipoItem_id`, `colecao_id`, `secao_id`, `categoria_id`, `img_acervo`, `descricao`, `status`, `palavra_chave`, `dataAquisicao`, `origemAquisicao`, `observacaoAquisicao`, `preco`, `tabelaCutter`, `isbn`, `anoEdicao`, `numero_paginas`, `edicao`, `classificacao`) VALUES
+(4, 'Teste', '543', 1, 'Português', 1, 1, 1, 1, 1, 1, 'http://localhost/Librecon/assets/uploads/img_default.jpg', '																													\r\n								\r\n								\r\n								\r\n							', 'Reservado', '', '2017-05-17', 'Compra', '', 0, '111aaa', '54321', '2014', 250, '4', 'a1b2c3');
 
 -- --------------------------------------------------------
 
@@ -81,8 +79,7 @@ CREATE TABLE `autor` (
 --
 
 INSERT INTO `autor` (`idAutor`, `autor`, `descricao`, `dataCadastro`) VALUES
-(12, 'Ze Celso', '', '2017-04-29'),
-(13, 'J.K', '', '2017-06-02');
+(1, 'J.K', '', '2017-06-05');
 
 -- --------------------------------------------------------
 
@@ -100,8 +97,7 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`idCategoria`, `nomeCategoria`) VALUES
-(1, 'Tecnologia da Informação'),
-(2, 'Outros');
+(1, 'Teste');
 
 -- --------------------------------------------------------
 
@@ -122,7 +118,8 @@ CREATE TABLE `ci_sessions` (
 --
 
 INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('3904f76cd25b2ce288e245ee2d49c56e', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', 1496425638, 'a:7:{s:9:"user_data";s:0:"";s:4:"nome";s:5:"admin";s:2:"id";s:1:"9";s:9:"permissao";s:1:"1";s:6:"logado";b:1;s:12:"tipo_usuario";s:1:"0";s:5:"grupo";N;}');
+('02934f9f648e4072a2d3c037391230a6', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', 1496771700, 'a:8:{s:9:"user_data";s:0:"";s:4:"nome";s:5:"admin";s:2:"id";s:1:"1";s:9:"permissao";s:1:"1";s:6:"logado";b:1;s:12:"tipo_usuario";s:1:"0";s:5:"grupo";N;s:15:"flash:old:error";s:40:"Número máximo de renovação excedido.";}'),
+('24f4b492a6d8527ef36e01e7ea83fc53', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', 1496771693, 'a:7:{s:9:"user_data";s:0:"";s:4:"nome";s:11:"André Luis";s:2:"id";s:2:"12";s:9:"permissao";s:1:"2";s:6:"logado";b:1;s:12:"tipo_usuario";s:1:"1";s:5:"grupo";s:1:"1";}');
 
 -- --------------------------------------------------------
 
@@ -141,8 +138,7 @@ CREATE TABLE `colecao` (
 --
 
 INSERT INTO `colecao` (`idColecao`, `colecao`, `dataCadastro`) VALUES
-(3, 'Vol.1', '2017-05-28'),
-(4, 'Classicos', '2017-06-02');
+(1, 'Vol.1', '2017-06-05');
 
 -- --------------------------------------------------------
 
@@ -177,14 +173,6 @@ CREATE TABLE `disciplinas` (
   `dataCadastro` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Extraindo dados da tabela `disciplinas`
---
-
-INSERT INTO `disciplinas` (`idDisciplina`, `nomeDisciplina`, `curso_id`, `dataCadastro`) VALUES
-(2, 'Marketing', 2, '2017-04-17'),
-(3, 'Fundamentos de T.I', 2, '2017-04-17');
-
 -- --------------------------------------------------------
 
 --
@@ -203,13 +191,6 @@ CREATE TABLE `documentos` (
   `tipo` varchar(15) DEFAULT NULL,
   `tamanho` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `documentos`
---
-
-INSERT INTO `documentos` (`idDocumentos`, `documento`, `descricao`, `file`, `path`, `url`, `cadastro`, `categoria`, `tipo`, `tamanho`) VALUES
-(1, 'imagem', 'imagem do livro alibaba', 'd9e5e3e3046c6f84899693533e82b544.jpg', 'C:/wamp64/www/Librecon/assets/arquivos/28-05-2017/d9e5e3e3046c6f84899693533e82b544.jpg', 'http://localhost/librecon/assets/arquivos/28-05-2017/d9e5e3e3046c6f84899693533e82b544.jpg', '2017-05-28', NULL, '.jpg', '216.51');
 
 -- --------------------------------------------------------
 
@@ -230,8 +211,7 @@ CREATE TABLE `editora` (
 --
 
 INSERT INTO `editora` (`idEditora`, `editora`, `email_editora`, `site`, `dataCadastro`) VALUES
-(3, 'Galo de Kalsa', '', '', '2017-05-28'),
-(4, 'Nova', '', '', '2017-06-02');
+(1, 'Nova', '', '', '2017-06-05');
 
 -- --------------------------------------------------------
 
@@ -276,9 +256,17 @@ CREATE TABLE `emprestimos` (
   `usuarios_id` int(11) NOT NULL,
   `status` varchar(20) NOT NULL,
   `grupo_id` int(11) NOT NULL,
-  `qtde_item` int(2) DEFAULT NULL,
-  `qtde_renovacao` int(2) DEFAULT NULL
+  `qtde_item` int(2) NOT NULL,
+  `qtde_renovacao` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `emprestimos`
+--
+
+INSERT INTO `emprestimos` (`idEmprestimos`, `dataEmprestimo`, `dataDevolucao`, `dataVencimento`, `leitor_id`, `usuarios_id`, `status`, `grupo_id`, `qtde_item`, `qtde_renovacao`) VALUES
+(6, '2017-06-06', NULL, '2017-06-13', 13, 1, 'Renovado', 1, 1, 2),
+(10, '2017-06-06', NULL, '2017-06-13', 12, 1, 'Emprestado', 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -318,6 +306,14 @@ CREATE TABLE `itens_de_emprestimos` (
   `acervos_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `itens_de_emprestimos`
+--
+
+INSERT INTO `itens_de_emprestimos` (`idItens`, `emprestimos_id`, `acervos_id`) VALUES
+(6, 6, 4),
+(7, 10, 4);
+
 -- --------------------------------------------------------
 
 --
@@ -330,18 +326,17 @@ CREATE TABLE `itens_de_reserva` (
   `acervos_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Extraindo dados da tabela `itens_de_reserva`
+-- Estrutura da tabela `links`
 --
 
-INSERT INTO `itens_de_reserva` (`idItem`, `reserva_id`, `acervos_id`) VALUES
-(40, 40, 12),
-(41, 40, 11),
-(45, 43, 12),
-(46, 44, 12),
-(47, 45, 12),
-(48, 46, 11),
-(49, 47, 12);
+CREATE TABLE `links` (
+  `idLink` int(11) NOT NULL,
+  `descricao` text NOT NULL,
+  `link` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -362,8 +357,8 @@ CREATE TABLE `permissoes` (
 --
 
 INSERT INTO `permissoes` (`idPermissao`, `nome`, `permissoes`, `situacao`, `data`) VALUES
-(1, 'Administrador', 'a:78:{s:6:"aCurso";s:1:"1";s:6:"eCurso";s:1:"1";s:6:"dCurso";s:1:"1";s:6:"vCurso";s:1:"1";s:11:"aDisciplina";s:1:"1";s:11:"eDisciplina";s:1:"1";s:11:"dDisciplina";s:1:"1";s:11:"vDisciplina";s:1:"1";s:6:"aGrupo";s:1:"1";s:6:"eGrupo";s:1:"1";s:6:"dGrupo";s:1:"1";s:6:"vGrupo";s:1:"1";s:7:"aLeitor";s:1:"1";s:7:"eLeitor";s:1:"1";s:7:"dLeitor";s:1:"1";s:7:"vLeitor";s:1:"1";s:7:"aAcervo";s:1:"1";s:7:"eAcervo";s:1:"1";s:7:"dAcervo";s:1:"1";s:7:"vAcervo";s:1:"1";s:6:"aAutor";s:1:"1";s:6:"eAutor";s:1:"1";s:6:"dAutor";s:1:"1";s:6:"vAutor";s:1:"1";s:8:"aEditora";s:1:"1";s:8:"eEditora";s:1:"1";s:8:"dEditora";s:1:"1";s:8:"vEditora";s:1:"1";s:9:"aTipoItem";s:1:"1";s:9:"eTipoItem";s:1:"1";s:9:"dTipoItem";s:1:"1";s:9:"vTipoItem";s:1:"1";s:10:"aCategoria";s:1:"1";s:10:"eCategoria";s:1:"1";s:10:"dCategoria";s:1:"1";s:10:"vCategoria";s:1:"1";s:6:"aSecao";s:1:"1";s:6:"eSecao";s:1:"1";s:6:"dSecao";s:1:"1";s:6:"vSecao";s:1:"1";s:8:"aColecao";s:1:"1";s:8:"eColecao";s:1:"1";s:8:"dColecao";s:1:"1";s:8:"vColecao";s:1:"1";s:8:"aReserva";s:1:"1";s:8:"eReserva";s:1:"1";s:8:"dReserva";s:1:"1";s:8:"vReserva";s:1:"1";s:3:"aOs";s:1:"1";s:3:"eOs";s:1:"1";s:3:"dOs";s:1:"1";s:3:"vOs";s:1:"1";s:6:"aTeste";b:0;s:6:"eTeste";b:0;s:6:"dTeste";b:0;s:6:"vTeste";b:0;s:11:"aEmprestimo";s:1:"1";s:11:"eEmprestimo";s:1:"1";s:11:"dEmprestimo";s:1:"1";s:11:"vEmprestimo";s:1:"1";s:8:"aArquivo";s:1:"1";s:8:"eArquivo";s:1:"1";s:8:"dArquivo";s:1:"1";s:8:"vArquivo";s:1:"1";s:11:"aLancamento";s:1:"1";s:11:"eLancamento";s:1:"1";s:11:"dLancamento";s:1:"1";s:11:"vLancamento";s:1:"1";s:8:"cUsuario";s:1:"1";s:9:"cEmitente";s:1:"1";s:10:"cPermissao";s:1:"1";s:7:"cBackup";s:1:"1";s:7:"rLeitor";s:1:"1";s:7:"rAcervo";s:1:"1";s:8:"rReserva";s:1:"1";s:3:"rOs";b:0;s:11:"rEmprestimo";s:1:"1";s:11:"rFinanceiro";s:1:"1";}', 1, '2014-09-03'),
-(2, 'Leitor', 'a:74:{s:6:"aCurso";b:0;s:6:"eCurso";b:0;s:6:"dCurso";b:0;s:6:"vCurso";b:0;s:11:"aDisciplina";b:0;s:11:"eDisciplina";b:0;s:11:"dDisciplina";b:0;s:11:"vDisciplina";b:0;s:6:"aGrupo";b:0;s:6:"eGrupo";b:0;s:6:"dGrupo";b:0;s:6:"vGrupo";b:0;s:7:"aLeitor";b:0;s:7:"eLeitor";b:0;s:7:"dLeitor";b:0;s:7:"vLeitor";b:0;s:7:"aAcervo";b:0;s:7:"eAcervo";b:0;s:7:"dAcervo";b:0;s:7:"vAcervo";s:1:"1";s:6:"aAutor";b:0;s:6:"eAutor";b:0;s:6:"dAutor";b:0;s:6:"vAutor";b:0;s:8:"aEditora";b:0;s:8:"eEditora";b:0;s:8:"dEditora";b:0;s:8:"vEditora";b:0;s:9:"aTipoItem";b:0;s:9:"eTipoItem";b:0;s:9:"dTipoItem";b:0;s:9:"vTipoItem";b:0;s:6:"aSecao";b:0;s:6:"eSecao";b:0;s:6:"dSecao";b:0;s:6:"vSecao";b:0;s:8:"aColecao";b:0;s:8:"eColecao";b:0;s:8:"dColecao";b:0;s:8:"vColecao";b:0;s:8:"aReserva";b:0;s:8:"eReserva";s:1:"1";s:8:"dReserva";b:0;s:8:"vReserva";s:1:"1";s:3:"aOs";b:0;s:3:"eOs";b:0;s:3:"dOs";b:0;s:3:"vOs";b:0;s:6:"aTeste";b:0;s:6:"eTeste";b:0;s:6:"dTeste";b:0;s:6:"vTeste";b:0;s:11:"aEmprestimo";b:0;s:11:"eEmprestimo";b:0;s:11:"dEmprestimo";b:0;s:11:"vEmprestimo";b:0;s:8:"aArquivo";b:0;s:8:"eArquivo";b:0;s:8:"dArquivo";b:0;s:8:"vArquivo";b:0;s:11:"aLancamento";b:0;s:11:"eLancamento";b:0;s:11:"dLancamento";b:0;s:11:"vLancamento";b:0;s:8:"cUsuario";b:0;s:9:"cEmitente";b:0;s:10:"cPermissao";b:0;s:7:"cBackup";b:0;s:7:"rLeitor";b:0;s:7:"rAcervo";b:0;s:8:"rReserva";b:0;s:3:"rOs";b:0;s:11:"rEmprestimo";b:0;s:11:"rFinanceiro";b:0;}', 1, '2017-04-10');
+(1, 'Administrador', 'a:67:{s:6:"aCurso";s:1:"1";s:6:"eCurso";s:1:"1";s:6:"dCurso";s:1:"1";s:6:"vCurso";s:1:"1";s:11:"aDisciplina";s:1:"1";s:11:"eDisciplina";s:1:"1";s:11:"dDisciplina";s:1:"1";s:11:"vDisciplina";s:1:"1";s:6:"aGrupo";s:1:"1";s:6:"eGrupo";s:1:"1";s:6:"dGrupo";s:1:"1";s:6:"vGrupo";s:1:"1";s:7:"aLeitor";s:1:"1";s:7:"eLeitor";s:1:"1";s:7:"dLeitor";s:1:"1";s:7:"vLeitor";s:1:"1";s:7:"aAcervo";s:1:"1";s:7:"eAcervo";s:1:"1";s:7:"dAcervo";s:1:"1";s:7:"vAcervo";s:1:"1";s:6:"aAutor";s:1:"1";s:6:"eAutor";s:1:"1";s:6:"dAutor";s:1:"1";s:6:"vAutor";s:1:"1";s:5:"aLink";s:1:"1";s:5:"eLink";s:1:"1";s:5:"dLink";s:1:"1";s:5:"vLink";s:1:"1";s:8:"aEditora";s:1:"1";s:8:"eEditora";s:1:"1";s:8:"dEditora";s:1:"1";s:8:"vEditora";s:1:"1";s:9:"aTipoItem";s:1:"1";s:9:"eTipoItem";s:1:"1";s:9:"dTipoItem";s:1:"1";s:9:"vTipoItem";s:1:"1";s:10:"aCategoria";s:1:"1";s:10:"eCategoria";s:1:"1";s:10:"dCategoria";s:1:"1";s:10:"vCategoria";s:1:"1";s:6:"aSecao";s:1:"1";s:6:"eSecao";s:1:"1";s:6:"dSecao";s:1:"1";s:6:"vSecao";s:1:"1";s:8:"aColecao";s:1:"1";s:8:"eColecao";s:1:"1";s:8:"dColecao";s:1:"1";s:8:"vColecao";s:1:"1";s:8:"aReserva";s:1:"1";s:8:"eReserva";s:1:"1";s:8:"dReserva";s:1:"1";s:8:"vReserva";s:1:"1";s:11:"aEmprestimo";s:1:"1";s:11:"eEmprestimo";s:1:"1";s:11:"dEmprestimo";s:1:"1";s:11:"vEmprestimo";s:1:"1";s:8:"aArquivo";s:1:"1";s:8:"eArquivo";s:1:"1";s:8:"dArquivo";s:1:"1";s:8:"vArquivo";s:1:"1";s:8:"cUsuario";s:1:"1";s:9:"cEmitente";s:1:"1";s:10:"cPermissao";s:1:"1";s:7:"cBackup";s:1:"1";s:7:"rLeitor";s:1:"1";s:7:"rAcervo";s:1:"1";s:11:"rEmprestimo";s:1:"1";}', 1, '2014-09-03'),
+(2, 'Leitor', 'a:67:{s:6:"aCurso";b:0;s:6:"eCurso";b:0;s:6:"dCurso";b:0;s:6:"vCurso";b:0;s:11:"aDisciplina";b:0;s:11:"eDisciplina";b:0;s:11:"dDisciplina";b:0;s:11:"vDisciplina";b:0;s:6:"aGrupo";b:0;s:6:"eGrupo";b:0;s:6:"dGrupo";b:0;s:6:"vGrupo";b:0;s:7:"aLeitor";b:0;s:7:"eLeitor";b:0;s:7:"dLeitor";b:0;s:7:"vLeitor";b:0;s:7:"aAcervo";b:0;s:7:"eAcervo";b:0;s:7:"dAcervo";b:0;s:7:"vAcervo";s:1:"1";s:6:"aAutor";b:0;s:6:"eAutor";b:0;s:6:"dAutor";b:0;s:6:"vAutor";b:0;s:5:"aLink";b:0;s:5:"eLink";b:0;s:5:"dLink";b:0;s:5:"vLink";s:1:"1";s:8:"aEditora";b:0;s:8:"eEditora";b:0;s:8:"dEditora";b:0;s:8:"vEditora";b:0;s:9:"aTipoItem";b:0;s:9:"eTipoItem";b:0;s:9:"dTipoItem";b:0;s:9:"vTipoItem";b:0;s:10:"aCategoria";b:0;s:10:"eCategoria";b:0;s:10:"dCategoria";b:0;s:10:"vCategoria";b:0;s:6:"aSecao";b:0;s:6:"eSecao";b:0;s:6:"dSecao";b:0;s:6:"vSecao";b:0;s:8:"aColecao";b:0;s:8:"eColecao";b:0;s:8:"dColecao";b:0;s:8:"vColecao";b:0;s:8:"aReserva";b:0;s:8:"eReserva";s:1:"1";s:8:"dReserva";b:0;s:8:"vReserva";s:1:"1";s:11:"aEmprestimo";b:0;s:11:"eEmprestimo";b:0;s:11:"dEmprestimo";b:0;s:11:"vEmprestimo";s:1:"1";s:8:"aArquivo";b:0;s:8:"eArquivo";b:0;s:8:"dArquivo";b:0;s:8:"vArquivo";b:0;s:8:"cUsuario";b:0;s:9:"cEmitente";b:0;s:10:"cPermissao";b:0;s:7:"cBackup";b:0;s:7:"rLeitor";b:0;s:7:"rAcervo";b:0;s:11:"rEmprestimo";b:0;}', 1, '2017-04-10');
 
 -- --------------------------------------------------------
 
@@ -374,18 +369,11 @@ INSERT INTO `permissoes` (`idPermissao`, `nome`, `permissoes`, `situacao`, `data
 CREATE TABLE `reserva` (
   `idReserva` int(11) NOT NULL,
   `usuario_id` int(11) NOT NULL,
-  `dataReserva` date NOT NULL,
-  `dataPrazo` date DEFAULT NULL,
+  `dataReserva` datetime NOT NULL,
+  `dataPrazo` datetime DEFAULT NULL,
   `status` varchar(20) DEFAULT NULL,
   `qtde_item` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `reserva`
---
-
-INSERT INTO `reserva` (`idReserva`, `usuario_id`, `dataReserva`, `dataPrazo`, `status`, `qtde_item`) VALUES
-(47, 11, '2017-06-02', '2017-06-09', 'Reservado', 1);
 
 -- --------------------------------------------------------
 
@@ -404,8 +392,7 @@ CREATE TABLE `secao` (
 --
 
 INSERT INTO `secao` (`idSecao`, `secao`, `dataCadastro`) VALUES
-(4, 'UFO', '2017-05-28'),
-(5, 'Ficção', '2017-06-02');
+(1, '10', '2017-06-05');
 
 -- --------------------------------------------------------
 
@@ -424,8 +411,7 @@ CREATE TABLE `tipo_de_item` (
 --
 
 INSERT INTO `tipo_de_item` (`idTipoItem`, `nomeTipo`, `dataCadastro`) VALUES
-(1, 'Livro', '2017-05-28'),
-(2, 'CD', '2017-05-28');
+(1, 'Livro', '2017-05-28');
 
 -- --------------------------------------------------------
 
@@ -456,18 +442,18 @@ CREATE TABLE `usuarios` (
   `dataCadastro` date NOT NULL,
   `permissoes_id` int(11) NOT NULL,
   `grupo_id` int(11) DEFAULT NULL,
-  `curso_id` int(11) DEFAULT NULL
+  `curso_id` int(11) DEFAULT NULL,
+  `img_leitor` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`idUsuarios`, `tipo_usuario`, `nome`, `datanasc`, `cpf`, `matricula`, `email`, `senha`, `telefone`, `celular`, `rua`, `numero`, `bairro`, `cidade`, `estado`, `cep`, `sexo`, `observacoes`, `situacao`, `dataCadastro`, `permissoes_id`, `grupo_id`, `curso_id`) VALUES
-(5, 0, 'André Pedroso', NULL, '436.581.558-09', NULL, 'andre@admin.com', 'f865b53623b121fd34ee5426c792e5c33af8c227', '(19)3863-4433', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2017-05-26', 1, NULL, NULL),
-(7, 1, 'Tiago Lima', '1990-10-31', '433.458.789-21', '1423030', 'tiago@leitor.com', '501f7eb5211df6b1b57c7c487265756f7ca40e70', '(19)3843-9689', '(19)98978-6989', 'Vera Macaco', '233', 'Della Rocha', 'Itapira', 'SP', '13976-400', 'Masculino', '0', '1', '2017-05-26', 2, 1, 2),
-(9, 0, 'admin', NULL, '000.000.00-00', NULL, 'admin@admin.com', 'd033e22ae348aeb5660fc2140aec35850c4da997', '(xx)0000-0000', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2017-05-28', 1, NULL, NULL),
-(11, 1, 'André Pedroso', '1994-11-21', '436.581.558-10', '1423007', 'andre@leitor.com', 'bc9800b9d52a24cce72a73dd528afed53f10e5fc', '(19)3863-4433', '', 'Cherubim Graciatto', '22', 'Nosso Teto', 'Itapira', 'SP', '13976-233', 'Masculino', '', '1', '2017-06-02', 2, 1, 2);
+INSERT INTO `usuarios` (`idUsuarios`, `tipo_usuario`, `nome`, `datanasc`, `cpf`, `matricula`, `email`, `senha`, `telefone`, `celular`, `rua`, `numero`, `bairro`, `cidade`, `estado`, `cep`, `sexo`, `observacoes`, `situacao`, `dataCadastro`, `permissoes_id`, `grupo_id`, `curso_id`, `img_leitor`) VALUES
+(1, 0, 'admin', NULL, '000.000.00-00', NULL, 'admin@admin.com', 'd033e22ae348aeb5660fc2140aec35850c4da997', '(xx)0000-0000', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2017-05-28', 1, NULL, NULL, NULL),
+(12, 1, 'André Luis', '1994-11-21', '436.581.558-09', '1423007', 'andre@leitor.com', 'bc9800b9d52a24cce72a73dd528afed53f10e5fc', '(19)3863-4433', '', 'Cherubim Graciatto', '22', 'Nosso Teto', 'Itapira', 'SP', '13976-233', 'Masculino', '', '1', '2017-06-05', 2, 1, 2, 'http://localhost/Librecon/assets/img/leitor/img_default.jpg'),
+(13, 1, 'Tiago Lima', '1987-10-21', '436.581.558-10', '1423030', 'tiago@leitor.com', '12fd5311017d4b8faf7abc6d7fa13d182f519a13', '19 9 8233-6936', '', 'Vera Macaco', '55', 'Della Rocha', 'Itapira', 'SP', '13976-233', 'Masculino', '', '1', '2017-06-06', 2, 1, 2, 'http://localhost/Librecon/assets/img/leitor/img_default.jpg');
 
 --
 -- Indexes for dumped tables
@@ -481,9 +467,9 @@ ALTER TABLE `acervos`
   ADD KEY `fk_acervos_autor1` (`autor_id`),
   ADD KEY `fk_acervos_editora1` (`editora_id`),
   ADD KEY `fk_acervos_tipoItem1` (`tipoItem_id`),
+  ADD KEY `fk_acervos_categoria` (`categoria_id`),
   ADD KEY `fk_acervos_secao1` (`secao_id`),
-  ADD KEY `fk_acervos_colecao1` (`colecao_id`),
-  ADD KEY `fk_acervos_categoria` (`categoria_id`);
+  ADD KEY `fk_acervos_colecao1` (`colecao_id`);
 
 --
 -- Indexes for table `autor`
@@ -572,6 +558,12 @@ ALTER TABLE `itens_de_reserva`
   ADD KEY `fk_itens_de_reserva_acervos` (`acervos_id`);
 
 --
+-- Indexes for table `links`
+--
+ALTER TABLE `links`
+  ADD PRIMARY KEY (`idLink`);
+
+--
 -- Indexes for table `permissoes`
 --
 ALTER TABLE `permissoes`
@@ -613,22 +605,22 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `acervos`
 --
 ALTER TABLE `acervos`
-  MODIFY `idAcervos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idAcervos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `autor`
 --
 ALTER TABLE `autor`
-  MODIFY `idAutor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idAutor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `idCategoria` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idCategoria` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `colecao`
 --
 ALTER TABLE `colecao`
-  MODIFY `idColecao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idColecao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `cursos`
 --
@@ -638,17 +630,17 @@ ALTER TABLE `cursos`
 -- AUTO_INCREMENT for table `disciplinas`
 --
 ALTER TABLE `disciplinas`
-  MODIFY `idDisciplina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idDisciplina` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `documentos`
 --
 ALTER TABLE `documentos`
-  MODIFY `idDocumentos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idDocumentos` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `editora`
 --
 ALTER TABLE `editora`
-  MODIFY `idEditora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idEditora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `emitente`
 --
@@ -658,7 +650,7 @@ ALTER TABLE `emitente`
 -- AUTO_INCREMENT for table `emprestimos`
 --
 ALTER TABLE `emprestimos`
-  MODIFY `idEmprestimos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idEmprestimos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `grupos`
 --
@@ -668,12 +660,17 @@ ALTER TABLE `grupos`
 -- AUTO_INCREMENT for table `itens_de_emprestimos`
 --
 ALTER TABLE `itens_de_emprestimos`
-  MODIFY `idItens` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idItens` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `itens_de_reserva`
 --
 ALTER TABLE `itens_de_reserva`
-  MODIFY `idItem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `idItem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+--
+-- AUTO_INCREMENT for table `links`
+--
+ALTER TABLE `links`
+  MODIFY `idLink` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `permissoes`
 --
@@ -683,22 +680,22 @@ ALTER TABLE `permissoes`
 -- AUTO_INCREMENT for table `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `idReserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `idReserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `secao`
 --
 ALTER TABLE `secao`
-  MODIFY `idSecao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idSecao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tipo_de_item`
 --
 ALTER TABLE `tipo_de_item`
-  MODIFY `idTipoItem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idTipoItem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idUsuarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idUsuarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- Constraints for dumped tables
 --
@@ -709,9 +706,9 @@ ALTER TABLE `usuarios`
 ALTER TABLE `acervos`
   ADD CONSTRAINT `fk_acervos_autor1` FOREIGN KEY (`autor_id`) REFERENCES `autor` (`idAutor`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_acervos_categoria` FOREIGN KEY (`categoria_id`) REFERENCES `categoria` (`idCategoria`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_acervos_colecao1` FOREIGN KEY (`colecao_id`) REFERENCES `colecao` (`idColecao`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_acervos_colecao1` FOREIGN KEY (`colecao_id`) REFERENCES `colecao` (`idColecao`),
   ADD CONSTRAINT `fk_acervos_editora1` FOREIGN KEY (`editora_id`) REFERENCES `editora` (`idEditora`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_acervos_secao1` FOREIGN KEY (`secao_id`) REFERENCES `secao` (`idSecao`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_acervos_secao1` FOREIGN KEY (`secao_id`) REFERENCES `secao` (`idSecao`),
   ADD CONSTRAINT `fk_acervos_tipoItem1` FOREIGN KEY (`tipoItem_id`) REFERENCES `tipo_de_item` (`idTipoItem`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
