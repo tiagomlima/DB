@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 06-Jun-2017 às 18:00
+-- Generation Time: 09-Jun-2017 às 18:03
 -- Versão do servidor: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -29,8 +29,6 @@ SET time_zone = "+00:00";
 CREATE TABLE `acervos` (
   `idAcervos` int(11) NOT NULL,
   `titulo` varchar(100) NOT NULL,
-  `tombo` varchar(55) NOT NULL,
-  `estoque` int(2) NOT NULL,
   `idioma` varchar(30) NOT NULL,
   `autor_id` int(11) NOT NULL,
   `editora_id` int(11) NOT NULL,
@@ -51,15 +49,16 @@ CREATE TABLE `acervos` (
   `anoEdicao` varchar(5) NOT NULL,
   `numero_paginas` int(6) NOT NULL,
   `edicao` varchar(50) DEFAULT NULL,
-  `classificacao` varchar(100) NOT NULL
+  `classificacao` varchar(100) NOT NULL,
+  `estoque` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `acervos`
 --
 
-INSERT INTO `acervos` (`idAcervos`, `titulo`, `tombo`, `estoque`, `idioma`, `autor_id`, `editora_id`, `tipoItem_id`, `colecao_id`, `secao_id`, `categoria_id`, `img_acervo`, `descricao`, `status`, `palavra_chave`, `dataAquisicao`, `origemAquisicao`, `observacaoAquisicao`, `preco`, `tabelaCutter`, `isbn`, `anoEdicao`, `numero_paginas`, `edicao`, `classificacao`) VALUES
-(4, 'Teste', '543', 1, 'Português', 1, 1, 1, 1, 1, 1, 'http://localhost/Librecon/assets/uploads/img_default.jpg', '																													\r\n								\r\n								\r\n								\r\n							', 'Reservado', '', '2017-05-17', 'Compra', '', 0, '111aaa', '54321', '2014', 250, '4', 'a1b2c3');
+INSERT INTO `acervos` (`idAcervos`, `titulo`, `idioma`, `autor_id`, `editora_id`, `tipoItem_id`, `colecao_id`, `secao_id`, `categoria_id`, `img_acervo`, `descricao`, `status`, `palavra_chave`, `dataAquisicao`, `origemAquisicao`, `observacaoAquisicao`, `preco`, `tabelaCutter`, `isbn`, `anoEdicao`, `numero_paginas`, `edicao`, `classificacao`, `estoque`) VALUES
+(16, 'Teste', 'Português', 1, 1, 1, 1, 1, 1, 'http://localhost/Librecon/assets/uploads/img_default.jpg', '																																				\r\n								\r\n								\r\n								\r\n								\r\n							', NULL, '', '2016-08-10', 'Compra', '', 0, '111aaa', '54321', '2010', 120, '4', 'a1b2c3', 1);
 
 -- --------------------------------------------------------
 
@@ -118,8 +117,7 @@ CREATE TABLE `ci_sessions` (
 --
 
 INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('02934f9f648e4072a2d3c037391230a6', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', 1496771700, 'a:8:{s:9:"user_data";s:0:"";s:4:"nome";s:5:"admin";s:2:"id";s:1:"1";s:9:"permissao";s:1:"1";s:6:"logado";b:1;s:12:"tipo_usuario";s:1:"0";s:5:"grupo";N;s:15:"flash:old:error";s:40:"Número máximo de renovação excedido.";}'),
-('24f4b492a6d8527ef36e01e7ea83fc53', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', 1496771693, 'a:7:{s:9:"user_data";s:0:"";s:4:"nome";s:11:"André Luis";s:2:"id";s:2:"12";s:9:"permissao";s:1:"2";s:6:"logado";b:1;s:12:"tipo_usuario";s:1:"1";s:5:"grupo";s:1:"1";}');
+('d5da0acc181bf687ae298748f8938a91', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36', 1497031328, 'a:8:{s:9:"user_data";s:0:"";s:4:"nome";s:5:"admin";s:2:"id";s:1:"1";s:9:"permissao";s:1:"1";s:6:"logado";b:1;s:12:"tipo_usuario";s:1:"0";s:5:"grupo";N;s:17:"flash:old:success";s:26:"Tombo editado com sucesso!";}');
 
 -- --------------------------------------------------------
 
@@ -260,13 +258,25 @@ CREATE TABLE `emprestimos` (
   `qtde_renovacao` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Extraindo dados da tabela `emprestimos`
+-- Estrutura da tabela `exemplares`
 --
 
-INSERT INTO `emprestimos` (`idEmprestimos`, `dataEmprestimo`, `dataDevolucao`, `dataVencimento`, `leitor_id`, `usuarios_id`, `status`, `grupo_id`, `qtde_item`, `qtde_renovacao`) VALUES
-(6, '2017-06-06', NULL, '2017-06-13', 13, 1, 'Renovado', 1, 1, 2),
-(10, '2017-06-06', NULL, '2017-06-13', 12, 1, 'Emprestado', 1, 1, 0);
+CREATE TABLE `exemplares` (
+  `idExemplar` int(11) NOT NULL,
+  `tombo` varchar(20) NOT NULL,
+  `acervos_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `exemplares`
+--
+
+INSERT INTO `exemplares` (`idExemplar`, `tombo`, `acervos_id`) VALUES
+(26, '458', 16),
+(29, '500', 16);
 
 -- --------------------------------------------------------
 
@@ -282,7 +292,7 @@ CREATE TABLE `grupos` (
   `qtde_max_renovacao` int(3) NOT NULL,
   `qtde_max_reserva` int(3) NOT NULL,
   `validade_reserva` int(2) NOT NULL,
-  `multa` float NOT NULL,
+  `multa` int(3) NOT NULL,
   `observacoes` text NOT NULL,
   `dataCadastro` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -292,7 +302,7 @@ CREATE TABLE `grupos` (
 --
 
 INSERT INTO `grupos` (`idGrupo`, `nomeGrupo`, `duracao_dias`, `qtde_max_item`, `qtde_max_renovacao`, `qtde_max_reserva`, `validade_reserva`, `multa`, `observacoes`, `dataCadastro`) VALUES
-(1, 'Leitor Comum', 7, 4, 1, 3, 7, 7.5, 'Cadastro de teste', '2017-04-17');
+(1, 'Leitor Comum', 7, 4, 1, 3, 7, 5, 'Cadastro de teste', '2017-04-17');
 
 -- --------------------------------------------------------
 
@@ -305,14 +315,6 @@ CREATE TABLE `itens_de_emprestimos` (
   `emprestimos_id` int(11) NOT NULL,
   `acervos_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `itens_de_emprestimos`
---
-
-INSERT INTO `itens_de_emprestimos` (`idItens`, `emprestimos_id`, `acervos_id`) VALUES
-(6, 6, 4),
-(7, 10, 4);
 
 -- --------------------------------------------------------
 
@@ -443,17 +445,19 @@ CREATE TABLE `usuarios` (
   `permissoes_id` int(11) NOT NULL,
   `grupo_id` int(11) DEFAULT NULL,
   `curso_id` int(11) DEFAULT NULL,
-  `img_leitor` varchar(255) DEFAULT NULL
+  `img_leitor` varchar(255) DEFAULT NULL,
+  `dataMulta` datetime DEFAULT NULL,
+  `multa` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`idUsuarios`, `tipo_usuario`, `nome`, `datanasc`, `cpf`, `matricula`, `email`, `senha`, `telefone`, `celular`, `rua`, `numero`, `bairro`, `cidade`, `estado`, `cep`, `sexo`, `observacoes`, `situacao`, `dataCadastro`, `permissoes_id`, `grupo_id`, `curso_id`, `img_leitor`) VALUES
-(1, 0, 'admin', NULL, '000.000.00-00', NULL, 'admin@admin.com', 'd033e22ae348aeb5660fc2140aec35850c4da997', '(xx)0000-0000', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2017-05-28', 1, NULL, NULL, NULL),
-(12, 1, 'André Luis', '1994-11-21', '436.581.558-09', '1423007', 'andre@leitor.com', 'bc9800b9d52a24cce72a73dd528afed53f10e5fc', '(19)3863-4433', '', 'Cherubim Graciatto', '22', 'Nosso Teto', 'Itapira', 'SP', '13976-233', 'Masculino', '', '1', '2017-06-05', 2, 1, 2, 'http://localhost/Librecon/assets/img/leitor/img_default.jpg'),
-(13, 1, 'Tiago Lima', '1987-10-21', '436.581.558-10', '1423030', 'tiago@leitor.com', '12fd5311017d4b8faf7abc6d7fa13d182f519a13', '19 9 8233-6936', '', 'Vera Macaco', '55', 'Della Rocha', 'Itapira', 'SP', '13976-233', 'Masculino', '', '1', '2017-06-06', 2, 1, 2, 'http://localhost/Librecon/assets/img/leitor/img_default.jpg');
+INSERT INTO `usuarios` (`idUsuarios`, `tipo_usuario`, `nome`, `datanasc`, `cpf`, `matricula`, `email`, `senha`, `telefone`, `celular`, `rua`, `numero`, `bairro`, `cidade`, `estado`, `cep`, `sexo`, `observacoes`, `situacao`, `dataCadastro`, `permissoes_id`, `grupo_id`, `curso_id`, `img_leitor`, `dataMulta`, `multa`) VALUES
+(1, 0, 'admin', NULL, '000.000.00-00', NULL, 'admin@admin.com', 'd033e22ae348aeb5660fc2140aec35850c4da997', '(xx)0000-0000', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2017-05-28', 1, NULL, NULL, NULL, NULL, 0),
+(12, 1, 'André Luis', '1994-11-21', '436.581.558-09', '1423007', 'andre@leitor.com', 'bc9800b9d52a24cce72a73dd528afed53f10e5fc', '(19)3863-4433', '', 'Cherubim Graciatto', '22', 'Nosso Teto', 'Itapira', 'SP', '13976-233', 'Masculino', '', '1', '2017-06-05', 2, 1, 2, 'http://localhost/Librecon/assets/img/leitor/img_default.jpg', NULL, 0),
+(13, 1, 'Tiago Lima', '1987-10-21', '436.581.558-10', '1423030', 'tiago@leitor.com', '12fd5311017d4b8faf7abc6d7fa13d182f519a13', '19 9 8233-6936', '', 'Vera Macaco', '55', 'Della Rocha', 'Itapira', 'SP', '13976-233', 'Masculino', '0', '1', '2017-06-06', 2, 1, 4, 'http://localhost/Librecon/assets/img/leitor/img_default.jpg', '2017-06-13 14:51:06', 1);
 
 --
 -- Indexes for dumped tables
@@ -536,6 +540,13 @@ ALTER TABLE `emprestimos`
   ADD KEY `fk_emprestimos_grupos1` (`grupo_id`);
 
 --
+-- Indexes for table `exemplares`
+--
+ALTER TABLE `exemplares`
+  ADD PRIMARY KEY (`idExemplar`),
+  ADD KEY `fk_exemplares_acervo` (`acervos_id`);
+
+--
 -- Indexes for table `grupos`
 --
 ALTER TABLE `grupos`
@@ -605,7 +616,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `acervos`
 --
 ALTER TABLE `acervos`
-  MODIFY `idAcervos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idAcervos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `autor`
 --
@@ -652,6 +663,11 @@ ALTER TABLE `emitente`
 ALTER TABLE `emprestimos`
   MODIFY `idEmprestimos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
+-- AUTO_INCREMENT for table `exemplares`
+--
+ALTER TABLE `exemplares`
+  MODIFY `idExemplar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+--
 -- AUTO_INCREMENT for table `grupos`
 --
 ALTER TABLE `grupos`
@@ -660,12 +676,12 @@ ALTER TABLE `grupos`
 -- AUTO_INCREMENT for table `itens_de_emprestimos`
 --
 ALTER TABLE `itens_de_emprestimos`
-  MODIFY `idItens` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idItens` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `itens_de_reserva`
 --
 ALTER TABLE `itens_de_reserva`
-  MODIFY `idItem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `idItem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `links`
 --
@@ -680,7 +696,7 @@ ALTER TABLE `permissoes`
 -- AUTO_INCREMENT for table `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `idReserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `idReserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 --
 -- AUTO_INCREMENT for table `secao`
 --
